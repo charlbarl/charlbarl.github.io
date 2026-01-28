@@ -2,7 +2,7 @@
 <p>
   This is mostly just a place for me to host files and track my static sites, forum profiles, socials, etc. <br>
 
-  <h2>My stuff!</h2><br><br>
+  <h2>My stuff!</h2>
   Neocities: <a href="https://charlbarl.neocities.org/"> Charlbarl Journal </a><br>
   ModWiggler: <a href="https://www.modwiggler.com/forum/memberlist.php?mode=viewprofile&u=76425"> Charlbarl Synth Forum </a><br>
   Reddit: <a href="https://www.reddit.com/user/Charlbarl/"> <s>Charlbarl</s> <b>BANNED</b></a><br>
