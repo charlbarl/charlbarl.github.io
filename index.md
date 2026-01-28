@@ -7,7 +7,7 @@
   ModWiggler: <a href="https://www.modwiggler.com/forum/memberlist.php?mode=viewprofile&u=76425"> Charlbarl - Synth Forum </a><br>
   Reddit: <a href="https://www.reddit.com/user/Charlbarl/"> <s>/u/Charlbarl</s> <b>BANNED</b></a><br>
   HomebrewTalk: <a href="https://homebrewtalk.com/members/charlbarl.348656/"> Charlbarl - Home Brew Forum </a><br>
-  FliteTest: <a href="https://forum.flitetest.com/index.php?members/charlbarl.47470"> Charlbarl - RC Plane Forum </a><br>
+  FliteTest: <a href="https://forum.flitetest.com/index.php?members/charlbarl.47470"> Charlbarl - RC Plane Forum </a><br><br>
   PCPartPicker: <a href="https://pcpartpicker.com/b/k9jp99"> Current PC Build </a><br>
   eGPUio: <a href="https://egpu.io/forums/builds/2018-lenovo-yoga-730-gtx-1080-rtx-2060-32-gbps-tb3-core-x-chroma-win10-1809/"> Old Lenovo Yoga eGPU Build </a><br><br>
   More to come?
