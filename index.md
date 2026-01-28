@@ -1,5 +1,5 @@
-Here you can say lots of fun things about your site.
-
-Maybe say a some things about yourself.
-
-Or maybe what you plan to blog about.
+<h1>Welcome!</h1>
+<p>
+  This is mostly just a place for me to track my static sites <br>
+  Neocities: <a href="https://charlbarl.neocities.org/"> Charlbarl <a/>
+</p>
