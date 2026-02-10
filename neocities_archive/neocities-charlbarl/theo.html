@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Charlbarl Theo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Scriptural reflections, Orthodox theology notes, and prayer journal writings by Charlbarl."
+  />
+
+  <!-- Favicons -->
+  <link rel="icon" href="assets/images/favicon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
+
+  <!-- Main site CSS -->
+  <link rel="stylesheet" href="code/styles/main_style.css?v=9999" />
+</head>
+
+<body>
+
+  <canvas
+    id="bgCanvas"
+    data-tile="assets/images/backgrounds/stone_v1_orange_200.png"
+    aria-hidden="true">
+  </canvas>
+
+  <div id="container">
+
+    <!-- ================= HEADER ================= -->
+    <div class="headerArea">
+      <header id="header" aria-label="Site header">
+        <div class="header-media" style="padding-top: 10%;">
+          <img
+            src="assets/images/photo/monastery032.jpg"
+            alt=""
+            class="header-image"
+            style="object-position: 50% 85%;">
+          <div class="header-overlay"></div>
+          <div class="header-content">
+            <h1>Charlbarl's<br>Prayer Journal</h1>
+            <span class="kicker">and theology thoughts</span>
+          </div>
+        </div>
+      </header>
+    </div>
+
+    <!-- ================= NAVBAR ================= -->
+    <nav id="navbar" aria-label="Primary">
+        <ul>
+          <li><a href="https://charlbarl.neocities.org/">Home</a></li>
+          <li><a href="https://charlbarl.neocities.org/photo">Photography</a></li>
+          <li><a href="https://charlbarl.neocities.org/theo">Theology</a></li>
+          <li><a href="https://charlbarl.neocities.org/diy">DIY</a></li>
+          <li><a href="https://charlbarl.neocities.org/stories">Stories</a></li>
+          <li class="nav-right">
+            <a class="nav-desktop-only" href="https://charlbarl.neocities.org/experimental/office_nav">Experimental Navigation</a>
+          </li>
+        </ul>
+      </nav>
+
+    <!-- ================= MAIN WRAPPER (THIS CREATES THE GAP) ================= -->
+    <section id="flex" aria-label="Main content">
+
+      <main id="content" role="main">
+
+        <section class="bookshelf-library">
+
+          <h2>Scriptural Reflections</h2>
+
+          <div class="shelf" aria-label="Bookshelf">
+
+            <!-- ========== OLD TESTAMENT ========== -->
+            <div class="book book--tan" data-tag="genesis" style="--book-width: 1.2;">
+              <a class="spine" href="/scripture/genesis.html">
+                <span class="spine-title">Genesis</span>
+              </a>
+            </div>
+
+            <div class="book book--tan" data-tag="exodus" style="--book-width: 1;">
+              <a class="spine" href="/scripture/exodus.html">
+                <span class="spine-title">Exodus</span>
+              </a>
+            </div>
+
+            <div class="book book--navy" data-tag="psalms" style="--book-width: 1.4;">
+              <a class="spine" href="/scripture/psalms.html">
+                <span class="spine-title">Psalms</span>
+              </a>
+            </div>
+
+            <div class="divider" aria-hidden="true"></div>
+
+            <!-- ========== NEW TESTAMENT ========== -->
+            <div class="book book--oxblood" data-tag="matthew" style="--book-width: 0.8;">
+              <a class="spine" href="/scripture/matthew.html">
+                <span class="spine-title">Matthew</span>
+              </a>
+            </div>
+
+            <div class="book book--oxblood" data-tag="mark" style="--book-width: 0.46;">
+              <a class="spine" href="/scripture/mark.html">
+                <span class="spine-title">Mark</span>
+              </a>
+            </div>
+
+            <div class="book book--oxblood" data-tag="john" style="--book-width: 0.58;">
+              <a class="spine" href="/scripture/john.html">
+                <span class="spine-title">John</span>
+              </a>
+            </div>
+
+            <div class="book book--green" data-tag="romans" style="--book-width: 0.45;">
+              <a class="spine" href="/scripture/romans.html">
+                <span class="spine-title">Romans</span>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Articles panel -->
+          <div
+            id="book-articles"
+            class="book-articles-panel"
+            role="region"
+            hidden>
+            <h3 id="book-articles-title"></h3>
+            <ul id="book-articles-list"></ul>
+          </div>
+
+        </section>
+
+        <!-- ================= SECONDARY CONTENT ================= -->
+        <hr class="section-divider">
+        <section class="library-secondary" id="library-secondary">
+          <h2>Other Reflections</h2>
+
+          <div class="card-grid">
+            <div class="card"><a href="/meditations/lent.html">Learning to Pray</a></div>
+            <div class="card"><a href="/faq/scripture-tradition.html">Lives of Saints</a></div>
+            <div class="card"><a href="/faq/sacraments.html">Orthodox FAQ</a></div>
+            
+          </div>
+          <p></P>
+        </section>
+
+      </main>
+      <!-- Right Sidebar -->
+      <aside id="rightSidebar" aria-label="Sidebar">
+
+  <!-- About box -->
+<div class="box sidebar-about">
+  <h3>About this library</h3>
+  <p>
+    Scriptural reflections sorted by books of the Bible.
+    Click on any <strong>book</strong> to load a list of articles.
+  </p>
+</div>
+
+<!-- This is the critical container for JS -->
+<div class="box">
+  <h3 class="sidebar-section-header">Recent Theology Articles</h3>
+  <div
+    id="sidebar-articles"
+    class="sidebar-article-grid"
+    data-articles
+    data-tags="theo"
+    data-limit="3">
+    <!-- JS will inject mini cards here -->
+  </div>
+</div>
+
+</aside>
+
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer id="footer">
+      © <span id="year"></span> Charlbarl. All rights reserved.
+    </footer>
+
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <script src="code/js/theo-library.js" defer></script>
+  <script src="code/js/wave_canvas_bi.js" defer></script>
+
+</body>
+</html>

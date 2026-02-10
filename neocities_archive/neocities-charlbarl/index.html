@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Charlbarl</title>
+
+  <link rel="icon" href="assets/images/favicon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
+
+  <!-- Main site CSS -->
+  <link rel="stylesheet" href="/code/styles/main_style.css?v=99999"/>
+
+  <!-- Contact form CSS (scoped with .contact-widget selectors) -->
+  <link rel="stylesheet" href="/code/styles/contact_style.css?v=9999"/>
+</head>
+
+<body>
+
+  <div id="container">
+    <div id="headerArea">
+      <header id="header" aria-label="Site header">
+        <div class="header-media" style="padding-top: 10%;">
+          <img
+            src="assets/images/photo/mayagain2028.jpg"
+            alt="contrast flowers"
+            class="header-image"
+            style="object-position: 50% 30%;"
+            width="1280"
+            height="565"
+          >
+          <div class="header-overlay"></div>
+          <div class="header-content">
+            <h1>Charlbarl's <br> Static Site </h1>
+            <span class="kicker">How I waste my time</span>
+          </div>
+        </div>
+      </header>
+
+      <nav id="navbar" aria-label="Primary">
+        <ul>
+          <li><a href="https://charlbarl.neocities.org/">Home</a></li>
+          <li><a href="https://charlbarl.neocities.org/photo">Photography</a></li>
+          <li><a href="https://charlbarl.neocities.org/theo">Theology</a></li>
+          <li><a href="https://charlbarl.neocities.org/diy">DIY</a></li>
+          <li><a href="https://charlbarl.neocities.org/stories">Stories</a></li>
+          <li class="nav-right">
+            <a class="nav-desktop-only" href="https://charlbarl.neocities.org/experimental/office_nav">Experimental Navigation</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <div id="flex">
+      <!-- Left Sidebar (cards-only; no wrapper div) -->
+      <aside id="leftSidebar" aria-label="Left sidebar">
+        <section class="now-block" id="now-listening">
+          <h3><u>Now Listening</u></h3>
+        </section>
+
+        <section class="now-block" id="now-reading">
+          <h3><u>Now Reading</u></h3>
+        </section>
+
+        <section class="now-block" id="now-playing">
+          <h3><u>Now Playing</u></h3>
+        </section>
+  
+        <button class="now-archive-link"  aria-label="Now archive">
+            <a href="/now-archive.html"  >"Now" Archive</a>
+          </button>
+
+
+        <noscript>
+          <section class="now-block">
+            <p>Enable JavaScript to see current updates.</p>
+          </section>
+        </noscript>
+      </aside>
+
+      <!-- Main Content -->
+      <main id="content" role="main">
+        <h1>Welcome</h1>
+        <p>Here are my most recent articles. Please click around!</p>
+        <section
+  id="recent-articles"
+  class="article-grid"
+  data-articles
+  data-limit="8">
+</section>
+
+      </main>
+
+      <!-- Right Sidebar -->
+      <!-- Right Sidebar -->
+        <aside id="rightSidebar" class="contact-widget" aria-label="Right sidebar">
+        
+          <!-- Image of the Week -->
+          <section class="image-of-week">
+            <h2>Image of the Week</h2>
+            <figure>
+              <img
+                src="assets/images/photo/monastery028.jpg"
+                alt="Monastery at dusk"
+                loading="lazy"
+              />
+              <figcaption>Monastery at dusk</figcaption>
+            </figure>
+          </section>
+          <a href="#" id="sidebar-toggle">
+   <span class="bar"></span>
+   <span class="bar"></span>
+   <span class="bar"></span>
+</a>
+
+<IFRAME SRC="//widget.websudoku.com/?level=3" WIDTH="100%" HEIGHT="260" SCROLLING="no" FRAMEBORDER="0"></IFRAME>
+        
+          <!-- Contact -->
+          <section class="contact-section">
+            <h2>Contact Me</h2>
+            <iframe
+            scrolling="no"
+          id="contact-iframe"
+          src="https://charlbarl.github.io/contact-form"
+          title="Contact form"
+          style="border:1px;width:100%;aspect-ratio:1/1.38;border-radius:10px"
+          loading="lazy"
+          referrerpolicy="no-referrer"
+        ></iframe>
+
+          </section>
+        
+        </aside>
+
+    </div> <!-- END #flex -->
+
+    <footer id="footer" role="contentinfo">
+      © <span id="year"></span> Charlbarl. All rights reserved.
+    </footer>
+  </div> <!-- END #container -->
+
+  <script>
+    const y = document.getElementById('year');
+    if (y) y.textContent = new Date().getFullYear();
+  </script>
+
+  <canvas id="bgCanvas" data-tile="assets/images/backgrounds/tile_cellular_rbf_600.png"></canvas>
+  <!-- Now sidebar (defer so DOM is present) -->
+  <script src="/code/js/now-sidebar.js?v=9999" defer></script>
+  <!-- Your existing background animation -->
+  <script src="code/js/wave_canvas_bi.js"> </script>
+   <script src="code/js/article_fetch.js" defer> </script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

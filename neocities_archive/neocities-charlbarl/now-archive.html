@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Now — Archive</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Archive of past 'Now' entries." />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --text: #111;
+        --bg: #fff;
+        --muted: #666;
+        --border: #e6e6e6;
+        --link: #0a66c2;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --text: #eee;
+          --bg: #111;
+          --muted: #aaa;
+          --border: #333;
+          --link: #83b3ff;
+        }
+      }
+      body {
+        margin: 0 auto;
+        max-width: 1000px;
+        padding: 1.25rem;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.5;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+      header a {
+        color: var(--link);
+        text-decoration: none;
+      }
+      header a:hover, header a:focus {
+        text-decoration: underline;
+      }
+      h1 {
+        font-size: 1.5rem;
+        margin: 0.5rem 0 0;
+      }
+      .subtle {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid var(--border);
+      }
+      thead th {
+        text-align: left;
+        font-weight: 700;
+        border-bottom: 2px solid var(--border);
+        padding: 0.75rem;
+      }
+      tbody td {
+        vertical-align: top;
+        border-top: 1px solid var(--border);
+        padding: 0.75rem;
+      }
+      ul {
+        margin: 0.25rem 0 0;
+        padding-left: 1.25rem;
+      }
+      .empty {
+        text-align: center;
+        color: var(--muted);
+      }
+      .pill {
+        display: inline-block;
+        padding: 0.1rem 0.5rem;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        font-size: 0.8rem;
+        color: var(--muted);
+        margin-left: 0.5rem;
+      }
+      .sr-only {
+        position: absolute;
+        width: 1px; height: 1px;
+        padding: 0; margin: -1px;
+        overflow: hidden; clip: rect(0, 0, 0, 0);
+        white-space: nowrap; border: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div>
+        <a href="/index" aria-label="Back to Home">← Back to Home</a>
+        <h1>Archive <span class="pill" id="entryCount" aria-live="polite"></span></h1>
+      </div>
+      <div class="subtle">Past snapshots of listening, reading, and playing</div>
+    </header>
+
+    <main>
+      <table aria-describedby="archiveHelp">
+        <thead>
+          <tr>
+            <th scope="col" style="width: 12rem;">Date</th>
+            <th scope="col">Listening</th>
+            <th scope="col">Reading</th>
+            <th scope="col">Playing</th>
+          </tr>
+        </thead>
+        <tbody id="archiveBody">
+          <tr><td class="empty" colspan="4">Loading archive…</td></tr>
+        </tbody>
+      </table>
+
+      <p id="archiveHelp" class="sr-only">
+        Table of archived “now” entries in reverse chronological order.
+      </p>
+
+      <noscript>
+        <p class="subtle">Enable JavaScript to load the archive from JSON.</p>
+      </noscript>
+    </main>
+
+<script>
+  // ========= CONFIG =========
+  const DATA_URL = window.NOW_DATA_URL || '/code/data/now.json';
+
+  // ========= UTILS =========
+  function labelFor(item, kind) {
+    if (typeof item === 'string') return item;
+
+    if (kind === 'listening') {
+      return (
+        item?.album ||
+        item?.title ||
+        item?.name  ||
+        item?.artist ||
+        '(untitled)'
+      );
+    }
+    if (kind === 'reading' || kind === 'playing') {
+      return (
+        item?.title ||
+        item?.name  ||
+        '(untitled)'
+      );
+    }
+    // Fallback
+    return (
+      item?.title ||
+      item?.album ||
+      item?.name  ||
+      item?.artist ||
+      '(untitled)'
+    );
+  }
+
+  // Create a DOM node for one archive item (either <a> or plain <span>)
+  function itemNode(item, kind) {
+    const label = labelFor(item, kind);
+
+    // Strings: no URL possible, just text
+    if (typeof item === 'string') {
+      const span = document.createElement('span');
+      span.textContent = label;
+      return span;
+    }
+
+    const url = item && item.url ? String(item.url) : '';
+    const isHttp = /^https?:\/\//i.test(url);
+
+    if (url && isHttp) {
+      const a = document.createElement('a');
+      a.href = url;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.textContent = label;
+      a.className = 'now-archive-link'; // optional class if you want styling
+      return a;
+    }
+
+    const span = document.createElement('span');
+    span.textContent = label;
+    return span;
+  }
+
+  // Build a cell: vertically stack items with simple <div> wrappers (no bullets, no images)
+  function listCell(items, kind) {
+    const frag = document.createDocumentFragment();
+
+    if (!Array.isArray(items) || items.length === 0) {
+      const dash = document.createElement('span');
+      dash.className = 'subtle';
+      dash.textContent = '—';
+      frag.appendChild(dash);
+      return frag;
+    }
+
+    for (const it of items) {
+      const line = document.createElement('div');
+      line.appendChild(itemNode(it, kind));
+      frag.appendChild(line);
+    }
+    return frag;
+  }
+
+  // ========= RENDER =========
+  function renderArchive(data) {
+    const body = document.getElementById('archiveBody');
+    const countBadge = document.getElementById('entryCount');
+
+    // Safety
+    if (!body) return;
+
+    const entries = Array.isArray(data.archive) ? [...data.archive] : [];
+    entries.sort((a, b) => {
+      const da = new Date(a.date || 0).getTime();
+      const db = new Date(b.date || 0).getTime();
+      return db - da; // newest first
+    });
+
+    // Clear existing rows
+    body.textContent = '';
+
+    if (entries.length === 0) {
+      const tr = document.createElement('tr');
+      const td = document.createElement('td');
+      td.className = 'empty';
+      td.colSpan = 4;
+      td.textContent = 'No archived entries yet.';
+      tr.appendChild(td);
+      body.appendChild(tr);
+      if (countBadge) {
+        countBadge.textContent = '0';
+        countBadge.setAttribute('aria-label', '0 archived entries');
+      }
+      return;
+    }
+
+    for (const entry of entries) {
+      const tr = document.createElement('tr');
+
+      // Date cell
+      const tdDate = document.createElement('td');
+      const dateISO = entry.date || '';
+      const time = document.createElement('time');
+      time.dateTime = dateISO;
+      time.textContent = dateISO
+        ? new Date(dateISO).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: '2-digit' })
+        : '—';
+      tdDate.appendChild(time);
+      tr.appendChild(tdDate);
+
+      // Listening
+      const tdListening = document.createElement('td');
+      tdListening.appendChild(listCell(entry.listening, 'listening'));
+      tr.appendChild(tdListening);
+
+      // Reading
+      const tdReading = document.createElement('td');
+      tdReading.appendChild(listCell(entry.reading, 'reading'));
+      tr.appendChild(tdReading);
+
+      // Playing
+      const tdPlaying = document.createElement('td');
+      tdPlaying.appendChild(listCell(entry.playing, 'playing'));
+      tr.appendChild(tdPlaying);
+
+      body.appendChild(tr);
+    }
+
+    if (countBadge) {
+      countBadge.textContent = String(entries.length);
+      countBadge.setAttribute('aria-label', `${entries.length} archived entries`);
+    }
+  }
+
+  // ========= FETCH (robust) =========
+  fetch(`${DATA_URL}?cb=${Date.now()}`, { cache: 'no-store' })
+    .then(async (r) => {
+      const text = await r.text().catch(() => '');
+      if (!r.ok) {
+        console.error(`[archive] HTTP ${r.status} for ${DATA_URL}`, text.slice(0, 300));
+        throw new Error(`HTTP ${r.status}`);
+      }
+      // If server returned HTML (likely a 404 page), bail with a clearer message
+      if (/^\s*</.test(text)) {
+        console.error('[archive] Expected JSON but got HTML. Check DATA_URL/path.', text.slice(0, 300));
+        throw new Error('HTML instead of JSON');
+      }
+      return JSON.parse(text);
+    })
+    .then(renderArchive)
+    .catch(err => {
+      console.error('[archive] Failed to load now.json:', err);
+      const body = document.getElementById('archiveBody');
+      if (body) {
+        body.innerHTML = `<tr><td class="empty" colspan="4">Could not load archive (check JSON path or console).</td></tr>`;
+      }
+      const countBadge = document.getElementById('entryCount');
+      if (countBadge) {
+        countBadge.textContent = '0';
+        countBadge.setAttribute('aria-label', `0 archived entries`);
+      }
+    });
+</script>
+  </body>
+</html>

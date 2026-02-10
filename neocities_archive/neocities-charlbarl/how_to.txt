@@ -1,0 +1,6 @@
+Update embedded player source in now.JSON
+"embed": { "type": "bandcamp", "trackId": "1220436579" }
+"embed": {"type": "soundcloud","url": "https://soundcloud.com/artist-name/track-or-playlist","auto_play": false,"visual": false}
+"embed": {"type": "youtube","id": "xCrO8m1auG8"}
+
+

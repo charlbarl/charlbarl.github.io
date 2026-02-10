@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Interactive Office Navigation</title>
+<style>
+  /* Page reset & container */
+  html, body { height: 100%; margin: 0; }
+  body {
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: #0b0b14;
+    color: #fff;
+    display: grid;
+    place-items: center;
+    padding: 0 12px;
+  }
+
+  .scene {
+    width: min(100%, 1000px);        /* Responsive max width */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,.4);
+    background: #111;
+    position: relative;
+  }
+
+  /* Make SVG scale responsively */
+  .scene svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* Base hotspot styles (applied to <a> or <button> inside <foreignObject> OR <g> with pointer-events) */
+  .hotspot {
+    cursor: pointer;
+    outline: none;
+  }
+
+  /* Visual affordance (highlight on hover/focus) for SVG shapes */
+  .hotspot-shape {
+    fill: rgba(255, 255, 255, 0.08);
+    stroke: rgba(255, 255, 255, 0.35);
+    stroke-width: 2;
+    opacity: 0;
+    transition: opacity .15s ease, fill .15s ease;
+  }
+  .hotspot:hover .hotspot-shape,
+  .hotspot:focus-within .hotspot-shape,
+  .hotspot[aria-current="true"] .hotspot-shape {
+    opacity: 1;
+    fill: rgba(68, 164, 255, 0.15);
+    stroke: rgba(68, 164, 255, 0.9);
+  }
+
+  /* Tooltip label (appears on hover/focus) using <text> */
+  .hotspot-label {
+    font: 600 14px/1.2 system-ui, sans-serif;
+    fill: #e9f3ff;
+    paint-order: stroke;
+    stroke: rgba(0,0,0,0.6);
+    stroke-width: 2;
+    opacity: 0;
+    transition: opacity .15s ease;
+  }
+  .hotspot:hover .hotspot-label,
+  .hotspot:focus-within .hotspot-label {
+    opacity: 1;
+  }
+
+  /* For screen readers only (in case you use off-screen textual labels) */
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,1px,1px); white-space: nowrap; border: 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="scene" aria-label="Interactive office navigation">
+  <!--
+    SVG viewBox matches the background image's intrinsic size for clean scaling.
+    Replace xlink:href/href with your office image URL and set viewBox accordingly.
+  -->
+  <svg viewBox="0 0 1920 1080" role="img" aria-labelledby="office-title">
+    <title id="office-title">Office scene: desk, bookshelf, door, workbench</title>
+
+    <!-- Background raster image -->
+    <image href="https://example.com/your-office-1920x1080.webp"
+           x="0" y="0" width="1920" height="1080"
+           preserveAspectRatio="xMidYMid slice" />
+
+    <!-- Hotspot: Computer on desk -->
+    <g class="hotspot" tabindex="0" role="link" aria-label="Open Projects"
+       data-action="navigate" data-href="/projects.html">
+      <!-- Shape outlining the clickable area; adjust coordinates -->
+      <rect class="hotspot-shape" x="640" y="540" width="260" height="140" rx="8" ry="8" />
+      <!-- Optional label hovering above -->
+      <text class="hotspot-label" x="770" y="520" text-anchor="middle">Projects</text>
+    </g>
+
+    <!-- Hotspot: Bookshelf (runs a script) -->
+    <g class="hotspot" tabindex="0" role="button" aria-label="Toggle notes panel"
+       data-action="script" data-script="toggleNotes">
+      <rect class="hotspot-shape" x="120" y="260" width="220" height="480" rx="10" ry="10" />
+      <text class="hotspot-label" x="230" y="240" text-anchor="middle">Notes</text>
+    </g>
+
+    <!-- Hotspot: Door (external link, new tab) -->
+    <g class="hotspot" tabindex="0" role="link" aria-label="Go to Documentation (opens in new tab)"
+       data-action="navigate" data-href="https://docs.example.com" data-target="_blank">
+      <rect class="hotspot-shape" x="1600" y="250" width="160" height="520" rx="6" ry="6" />
+      <text class="hotspot-label" x="1680" y="230" text-anchor="middle">Docs</text>
+    </g>
+
+    <!-- Hotspot: Workshop bench (runs script to open a modal/tool) -->
+    <g class="hotspot" tabindex="0" role="button" aria-label="Open Tool Runner"
+       data-action="script" data-script="openToolRunner">
+      <rect class="hotspot-shape" x="980" y="790" width="520" height="180" rx="12" ry="12" />
+      <text class="hotspot-label" x="1240" y="770" text-anchor="middle">Tool Runner</text>
+    </g>
+  </svg>
+</div>
+
+<!-- Minimal JS: handle navigation & simple script hooks -->
+<script>
+  (function () {
+    'use strict';
+
+    const scene = document.querySelector('.scene svg');
+    scene.addEventListener('click', onActivate);
+    scene.addEventListener('keydown', (e) => {
+      // Activate with Enter/Space when hotspot has focus
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.closest('.hotspot')) {
+        e.preventDefault();
+        onActivate(e);
+      }
+    });
+
+    function onActivate(e) {
+      const node = e.target.closest('.hotspot');
+      if (!node) return;
+
+      const action = node.getAttribute('data-action');
+      if (action === 'navigate') {
+        const href = node.getAttribute('data-href');
+        const target = node.getAttribute('data-target');
+        if (!href) return;
+        if (target === '_blank') {
+          window.open(href, '_blank', 'noopener');
+        } else {
+          window.location.href = href;
+        }
+      } else if (action === 'script') {
+        const scriptName = node.getAttribute('data-script');
+        if (scriptName && typeof ScriptActions[scriptName] === 'function') {
+          ScriptActions[scriptName](node);
+        }
+      }
+    }
+
+    // Example scripts you can expand
+    const ScriptActions = {
+      toggleNotes() {
+        alert('Notes panel toggled (demo). Replace with your UI logic.');
+      },
+      openToolRunner() {
+        alert('Tool Runner opened (demo). Hook to your real tool UI.');
+      }
+    };
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Charlbarl Photo</title>
+  <link rel="icon" href="assets/images/favicon/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
+
+  <!-- Link your existing CSS -->
+  <link rel="stylesheet" href="code/styles/main_style.css?v=999">
+</head>
+<body>
+  <!-- Optional animated background canvas -->
+  <canvas
+    id="bgCanvas"
+    data-tile="assets/images/backgrounds/tile_nebula_glass_600.png"
+    aria-hidden="true">
+  </canvas>
+
+  <div id="container">
+    <div class="headerArea">
+      <header id="header" aria-label="Site header">
+        <div class="header-media" style="padding-top: 10%;">
+          <img src="assets/images/photo/roll3053.jpg"
+               alt="red car"
+               class="header-image"
+               style="object-position: 50% 75%;">
+          <div class="header-overlay"></div>
+          <div class="header-content">
+            <h1>Charlbarl's <br> Photo Gallery </h1>
+            <span class="kicker">and photography experiences</span>
+          </div>
+        </div>
+      </header>
+    </div>
+
+    <!-- Navbar -->
+     <nav id="navbar" aria-label="Primary">
+        <ul>
+          <li><a href="https://charlbarl.neocities.org/">Home</a></li>
+          <li><a href="https://charlbarl.neocities.org/photo">Photography</a></li>
+          <li><a href="https://charlbarl.neocities.org/theo">Theology</a></li>
+          <li><a href="https://charlbarl.neocities.org/diy">DIY</a></li>
+          <li><a href="https://charlbarl.neocities.org/stories">Stories</a></li>
+          <li class="nav-right">
+            <a class="nav-desktop-only" href="https://charlbarl.neocities.org/experimental/office_nav">Experimental Navigation</a>
+          </li>
+        </ul>
+      </nav>
+
+    <!-- Main content row -->
+    <section id="flex" aria-label="Main content and sidebar">
+      <main id="content">
+        <div class="gallery-header">
+          <h2>Photo Gallery    </h2>
+        
+          <nav class="gallery-filters" aria-label="Gallery filters">
+            <a href="#" data-filter="*">All</a>
+            <a href="#" data-filter="bw">B&W</a>
+            <a href="#" data-filter="film">Film</a>
+            <a href="#" data-filter="people">People</a>
+            <a href="#" data-filter="nature">Nature</a>
+            <a href="#" data-filter="favorites">Faves</a>
+          </nav>
+        </div>
+
+        
+
+        <!-- Gallery container (empty, JS will populate) -->
+        <div class="gallery" id="gallery"></div>
+        <div><h2>  </h2></div>
+      </main>
+
+<aside id="rightSidebar" aria-label="Sidebar">
+
+  <!-- About box -->
+<div class="box sidebar-about">
+  <h3>About this album</h3>
+  <p>
+    Curated shots from both film and digital. Click any thumbnail to view full-size.
+    Use <strong>←</strong>/<strong>→</strong> keys to browse. Press <strong>Esc</strong> to close.
+  </p>
+</div>
+
+<!-- This is the critical container for JS -->
+<div class="box">
+  <h3 class="sidebar-section-header">Recent Photography Articles</h3>
+  <div
+    id="sidebar-articles"
+    class="sidebar-article-grid"
+    data-articles
+    data-tags="photo"
+    data-limit="3">
+    <!-- JS will inject mini cards here -->
+  </div>
+</div>
+
+</aside>
+
+    </section>
+
+    <footer id="footer">
+      © <span id="year"></span> Charlbarl. All rights reserved.
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+<!-- Lightbox / Modal -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle" aria-describedby="lightboxCaption" hidden>
+  <div class="lightbox-dialog" role="document" aria-live="polite">
+    <div class="lightbox-stage">
+      <!-- Remove the text "Image viewer" -->
+      <h2 id="lightboxTitle" class="visually-hidden">
+        <!-- Intentionally left blank for accessibility -->
+      </h2>
+
+      <img id="lightboxImage" src="" alt="" />
+
+      <!-- Remove inner text from buttons, only keep aria-labels -->
+      <button class="lightbox-close" id="lbClose" type="button" aria-label="Close"></button>
+      <button class="lightbox-prev"  id="lbPrev"  type="button" aria-label="Previous image"></button>
+      <button class="lightbox-next"  id="lbNext"  type="button" aria-label="Next image"></button>
+    </div>
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+</div>
+
+  <!-- Optional canvas animation JS -->
+  <script src="/code/js/wave_canvas.js"></script>
+
+  <!-- Gallery + lightbox JS -->
+  <script src="/code/js/gallery.js" defer></script>
+  <script src="/code/js/photographers.js?v=999" defer></script>
+  <script src="/code/js/article_fetch.js" defer></script>
+</body>
+</html>

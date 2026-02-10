@@ -1,0 +1,144 @@
+{
+  "lastUpdated": "2026-02-06T18:24:08Z",
+  "current": {
+    "listening": [
+      {
+        "artist": "The Alex Jones Prison Planet",
+        "album": "Super Heavy Galactic Stuff",
+        "year": 2018,
+        "cover": "assets/images/now/SuperHeavyGalacticCover.jpg",
+        "favoriteSong": "Image of the Beast (Erased Forever)",
+        "description": "Heavy Metal, Info-core",
+        "url": "https://thealexjonesprisonplanet.bandcamp.com/album/super-heavy-galactic-stuff",
+        "embed": { "type": "bandcamp", "trackId": "3369994353" }
+      }
+    ],
+    "reading": [
+      {
+        "title": "The Joyful Christian",
+        "author": "C.S. Lewis",
+        "year": 1977,
+        "cover": "assets/images/now/JoyfulChristianCover.jpg",
+        "description": "A collection of excerpts from the great author C.S. Lewis' theological works",
+        "url": "https://www.goodreads.com/book/show/541736.The_Joyful_Christian"
+      }
+    ],
+    "playing": [
+      {
+        "title": "Majora's Mask 3D",
+        "year": 2015,
+        "cover": "assets/images/now/MajorasMask3DCover.jpg",
+        "description": "A 3DS remake of one of my most beloved childhood games, in which Link has to save Clock Town from a possessed imp",
+        "url": "https://en.wikipedia.org/wiki/The_Legend_of_Zelda:_Majora%27s_Mask_3D"
+      }
+    ]
+  },
+  "archive": [
+    {
+      "date": "2026-02-09",
+      "listening": [
+      {
+        "artist": "The Alex Jones Prison Planet",
+        "album": "Super Heavy Galactic Stuff",
+        "year": 2018,
+        "cover": "assets/images/now/SuperHeavyGalacticCover.jpg",
+        "favoriteSong": "Image of the Beast (Erased Forever)",
+        "description": "Heavy Metal, Info-core",
+        "url": "https://thealexjonesprisonplanet.bandcamp.com/album/super-heavy-galactic-stuff",
+        "embed": { "type": "bandcamp", "trackId": "3369994353" }
+      }
+    ],
+    "reading": [
+      {
+        "title": "The Joyful Christian",
+        "author": "C.S. Lewis",
+        "year": 1977,
+        "cover": "assets/images/now/JoyfulChristianCover.jpg",
+        "description": "A collection of excerpts from the great author C.S. Lewis' theological works",
+        "url": "https://www.goodreads.com/book/show/541736.The_Joyful_Christian"
+      }
+    ],
+    "playing": [
+      {
+        "title": "Majora's Mask 3D",
+        "year": 2015,
+        "cover": "assets/images/now/MajorasMask3DCover.jpg",
+        "description": "A 3DS remake of one of my most beloved childhood games, in which Link has to save Clock Town from a possessed imp",
+        "url": "https://en.wikipedia.org/wiki/The_Legend_of_Zelda:_Majora%27s_Mask_3D"
+      }
+    ]
+  },
+    {
+      "date": "2026-02-06",
+      "listening": [
+        {
+          "artist": "Helvetia",
+          "album": "Helvetia's Junk Shop",
+          "year": 2009,
+          "cover": "assets/images/now/HelvetiasJunkShop.webp",
+          "favoriteSong": "Leading towards an end",
+          "description": "slowcore, slacker rock",
+          "url": "https://helvetiamusic.bandcamp.com/album/helvetias-junk-shop",
+          "embed": { "type": "bandcamp", "trackId": "1220436579" }
+        }
+      ],
+      "reading": [
+        {
+          "title": "Of Human Bondage",
+          "author": "W. Somerset Maugham",
+          "year": 1915,
+          "cover": "assets/images/now/OfHumanBondage.jpg",
+          "description": "A nihilistic yet charming old world bildungsroman",
+          "url": "https://www.goodreads.com/book/show/31548.Of_Human_Bondage"
+        }
+      ],
+      "playing": [
+        {
+          "title": "GTA4",
+          "year": 2008,
+          "cover": "assets/images/now/gta4.jpg",
+          "description": "Niko Bellic's version of the American Dream",
+          "url": "https://store.steampowered.com/app/12210/Grand_Theft_Auto_IV_The_Complete_Edition/"
+        }
+      ],
+      "notes": "Initial snapshot when archive was introduced."
+    },
+    {
+      "date": "2026-01-05",
+      "listening": [
+        {
+          "artist": "Joeyy",
+          "album": "Attention 2 Retail",
+          "year": 2021,
+          "cover": " ",
+          "favoriteSong": "Fiat",
+          "description": "rap",
+          "url": "https://soundcloud.com/jxxyy/sets/attention2retail",
+          "embed": { "type": "soundcloud", "url": "https://soundcloud.com/jxxyy/fiat?in=jxxyy/sets/attention2retail" }
+        }
+      ],
+      "reading": [
+        {
+          "title": "Till We Have Faces",
+          "author": "C.S. Lewis",
+          "year": 1956,
+          "cover": " ",
+          "description": "A retelling of Cupid and Psyche, this time retold through the eyes of Psyche’s oldest sister, Orual.",
+          "url": "https://www.goodreads.com/book/show/17343.Till_We_Have_Faces"
+        }
+      ],
+      "playing": [
+        {
+          "title": "Balatro",
+          "year": 2024,
+          "cover": " ",
+          "description": "A hypnotically satisfying deckbuilder where you play illegal poker hands, discover game-changing jokers, and trigger adrenaline-pumping, outrageous combos.",
+          "url": "https://www.playbalatro.com/"
+        }
+      ],
+      "notes": "Pre-date, filler"
+    }
+    
+  ]
+}
+
